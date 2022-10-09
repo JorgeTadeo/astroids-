@@ -6,11 +6,10 @@ import random
 from Enemy import *
 from Player import *
 from Missile import *
+from Constants import *
 
 # 2 - Define constants
 BLACK = (0, 0, 0)
-WINDOW_WIDTH = 640
-WINDOW_HEIGHT = 480
 FRAMES_PER_SECOND = 30
 
 # 3 - Initialize the world
@@ -21,7 +20,7 @@ clock = pygame.time.Clock()
 # 4 Load assets: image(s), sound(s), etc.
 
 # 5 - Initialize variables
-oEnemy3 = Enemy(window, WINDOW_WIDTH, WINDOW_HEIGHT, 50, 50)
+oEnemy3 = Enemy(window)
 oPlayer = Player(window, WINDOW_WIDTH, WINDOW_HEIGHT)
 
 # 6 - Loop forever
