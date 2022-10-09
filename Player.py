@@ -11,6 +11,7 @@ class Player():
         self.windowWidth = windowWidth
         self.windowHeight = windowHeight
         self.missileList = []
+        self.missileMgr = MissileMgr(self.window)
 
         # pygame.draw.polygon(window, (0, 255, 0), [[25, 25], [0, 50], [50, 50]], 2)
         # building our triangle
@@ -40,25 +41,17 @@ class Player():
         else:
             return
 
-    def missilesFired(self):
-        return len(self.missileList)
-
     def fire(self):
-        if self.missilesFired() > 2:
+        if self.missileMgr.missiles() > 2:
             return
         else:
-            oMissile = Missile(self.window, self.windowWidth,
-                               self.windowHeight, self.topPoint[0], self.topPoint[1])
-            self.missileList.append(oMissile)
+            print(self.topPoint[0], self.topPoint[1])
+            self.missileMgr.addMissile(self.topPoint[0], self.topPoint[1])
 
     def update(self):
-        for missile in list(self.missileList):
-            missile.update()
-            if missile.location():
-                self.missileList.remove(missile)
+            self.missileMgr.update()
 
     def draw(self):
         pygame.draw.polygon(self.window, (0, 255, 0), [
                             self.topPoint, self.leftPoint, self.rightPoint], 0)
-        for missile in self.missileList:
-            missile.draw()
+        self.missileMgr.draw()
